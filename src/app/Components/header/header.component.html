@@ -1,0 +1,15 @@
+<p-toolbar>
+  <div>
+    <p-button icon="pi pi-discord"
+              (onClick)="showInfo()"/>
+  </div>
+  <div>
+    <h2> K/D/A Calculator</h2>
+  </div>
+  <div>
+    <p-button [icon]="getActiveTheme()? 'pi pi-moon' : 'pi pi-sun'"
+              rounded="true"
+              (onClick)="switchThemes()"/>
+  </div>
+</p-toolbar>
+<p-toast/>
