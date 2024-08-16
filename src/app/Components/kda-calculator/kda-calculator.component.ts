@@ -12,11 +12,13 @@ import {DividerModule} from "primeng/divider";
 import {ChartModule} from 'primeng/chart';
 import {ChartDataService} from "../../Domain/services/chartData.service";
 import {FieldsetModule} from "primeng/fieldset";
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 @Component({
   selector: 'app-kda-calculator',
   standalone: true,
-  imports: [CardModule, FieldsetModule, InputNumberModule, FloatLabelModule, ButtonModule, ButtonGroupModule, FormsModule, DividerModule, ChartModule],
+  imports: [CardModule, FieldsetModule, InputNumberModule, FloatLabelModule, ButtonModule, ButtonGroupModule, FormsModule, DividerModule, ChartModule, InputGroupModule, InputGroupAddonModule],
   templateUrl: './kda-calculator.component.html',
   styleUrl: './kda-calculator.component.scss',
 })

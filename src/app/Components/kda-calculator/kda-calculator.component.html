@@ -1,8 +1,9 @@
 <main>
-  <div class="wrapper">
+  <div class="container-kda-calc">
+    <div class="container-kda-calc-and-chart">
     <div class="container-fieldset">
       <p-fieldset legend="K/D/A">
-        <div class="fielset-with-inputs container-min-width">
+        <div class="fielset-with-inputs min-height-kda-fieldset container-min-width">
           <div class="container-input-buttons">
             <p-floatLabel>
               <p-inputNumber id="numberOfKills" [(ngModel)]="kdaStats.kills"/>
@@ -54,11 +55,11 @@
         <p-divider></p-divider>
         <span class="label-calc-output">K/D/A <b>{{ getRoundedKda() }}</b></span>
       </p-fieldset>
-    </div>
+  </div>
 
     <div class="container-fieldset">
       <p-fieldset legend="K/D/A target tracker">
-        <div class="fielset-with-inputs min-height-and-spacing container-min-width">
+        <div class="fielset-with-inputs min-height spacing container-min-width">
           <div class="container-input-buttons">
             <p-floatLabel>
               <p-inputNumber id="targetKda" [(ngModel)]="targetKda" [maxFractionDigits]="2"/>
@@ -75,10 +76,11 @@
         </div>
       </p-fieldset>
     </div>
+  </div>
 
     <div class="container-fieldset">
       <p-fieldset legend="Chart-View" class="chart">
-        <div class="container-chart container-min-width">
+        <div class="min-height container-min-width">
           @if (kdaStats.kda != 0) {
             <p-chart type="pie" [data]="data" [options]="options"/>
           } @else {
