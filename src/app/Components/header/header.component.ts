@@ -5,16 +5,18 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [ToolbarModule, ButtonModule, ToastModule, SelectButtonModule, TranslateModule],
+    imports: [ToolbarModule, ButtonModule, ToastModule, SelectButtonModule, TranslateModule, FormsModule],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
     languageOptions: any[] = [{ label: 'EN', value: 'en' },{ label: 'DE', value: 'de' }];
+    currentLanguge: string = 'en';
 
     constructor(private messageService: MessageService, public translate: TranslateService) {
     }
@@ -27,6 +29,7 @@ export class HeaderComponent implements OnInit {
     }
 
     switchLanguage(language: any) {
+        this.currentLanguge = language.option.value;
         this.translate.use(language.option.value);
     }
 }
