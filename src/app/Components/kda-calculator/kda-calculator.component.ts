@@ -14,11 +14,12 @@ import {ChartDataService} from "../../Domain/services/chartData.service";
 import {FieldsetModule} from "primeng/fieldset";
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-kda-calculator',
   standalone: true,
-  imports: [CardModule, FieldsetModule, InputNumberModule, FloatLabelModule, ButtonModule, ButtonGroupModule, FormsModule, DividerModule, ChartModule, InputGroupModule, InputGroupAddonModule],
+  imports: [CardModule, FieldsetModule, InputNumberModule, FloatLabelModule, ButtonModule, ButtonGroupModule, FormsModule, DividerModule, ChartModule, InputGroupModule, InputGroupAddonModule, TranslateModule],
   templateUrl: './kda-calculator.component.html',
   styleUrl: './kda-calculator.component.scss',
 })
@@ -38,7 +39,7 @@ export class KdaCalculatorComponent implements OnInit, OnDestroy {
   targetKda = this.kdaStats.kda;
   numberOfKillsForTargetKda = 0;
 
-  constructor(private combatStatService: CombatStatService, private chartDataService: ChartDataService) {
+  constructor(private combatStatService: CombatStatService, private chartDataService: ChartDataService, translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -46,8 +47,6 @@ export class KdaCalculatorComponent implements OnInit, OnDestroy {
       this.kdaStats = stats;
       this.setChartDataAndOptions();
     });
-
-
   }
 
   ngOnDestroy() {
@@ -94,7 +93,7 @@ export class KdaCalculatorComponent implements OnInit, OnDestroy {
   }
 
   getRoundedKda() {
-    return Math.round((this.kdaStats.kda + Number.EPSILON) * 1000) / 1000;
+    return this.combatStatService.getRoundedKda();
   }
 
   getNumberOfKillsOrAssistsUntilTargetKda() {

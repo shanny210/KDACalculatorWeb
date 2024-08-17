@@ -7,7 +7,7 @@
           <div class="container-input-buttons">
             <p-floatLabel>
               <p-inputNumber id="numberOfKills" [(ngModel)]="kdaStats.kills"/>
-              <label for="numberOfKills">Kills</label>
+              <label for="numberOfKills">{{ 'kills' | translate }}</label>
             </p-floatLabel>
 
             <p-buttonGroup>
@@ -21,7 +21,7 @@
           <div class="container-input-buttons">
             <p-floatLabel>
               <p-inputNumber id="numberOfAssists" [(ngModel)]="kdaStats.assists"/>
-              <label for="numberOfAssists">Assists</label>
+              <label for="numberOfAssists">{{ 'assists' | translate }}</label>
             </p-floatLabel>
 
             <p-buttonGroup>
@@ -35,7 +35,7 @@
           <div class="container-input-buttons">
             <p-floatLabel>
               <p-inputNumber id="numberOfDeaths" [(ngModel)]="kdaStats.deaths"/>
-              <label for="numberOfDeaths">Deaths</label>
+              <label for="numberOfDeaths">{{ 'deaths' | translate }}</label>
             </p-floatLabel>
 
             <p-buttonGroup>
@@ -58,12 +58,12 @@
   </div>
 
     <div class="container-fieldset">
-      <p-fieldset legend="K/D/A target tracker">
+      <p-fieldset legend="{{ 'targetTracker' | translate }}">
         <div class="fielset-with-inputs min-height spacing container-min-width">
           <div class="container-input-buttons">
             <p-floatLabel>
               <p-inputNumber id="targetKda" [(ngModel)]="targetKda" [maxFractionDigits]="2"/>
-              <label for="targetKda">Target K/D/A</label>
+              <label for="targetKda">{{ 'targetKda' | translate }}</label>
             </p-floatLabel>
             <p-button id="calculateTargetKda" icon="pi pi-calculator"
                       (click)="getNumberOfKillsOrAssistsUntilTargetKda()" severity="secondary" [disabled]="kdaStats.kda == 0"
@@ -71,7 +71,7 @@
           </div>
           <div>
             <p-divider></p-divider>
-            <span class="label-calc-output">Needed Kills/Assists <b>{{ numberOfKillsForTargetKda }}</b></span>
+            <span class="label-calc-output">{{ 'neededKillsAssists' | translate }}<b>{{ numberOfKillsForTargetKda }}</b></span>
           </div>
         </div>
       </p-fieldset>
@@ -79,14 +79,14 @@
   </div>
 
     <div class="container-fieldset">
-      <p-fieldset legend="Chart-View" class="chart">
+      <p-fieldset legend="{{ 'chartView' | translate }}" class="chart">
         <div class="min-height container-min-width">
           @if (kdaStats.kda != 0) {
             <p-chart type="pie" [data]="data" [options]="options"/>
           } @else {
             <div class="no-kda-info">
               <i class="pi pi-info-circle"></i>
-              <span>Bitte erst eine K/D/A berechnen</span>
+              <span>{{ 'calculateKdaPrompt' | translate }}</span>
             </div>
           }
         </div>

@@ -1,22 +1,26 @@
 import {
-  BaseIcon,
+  AutoFocus
+} from "./chunk-UL2KDJPG.js";
+import {
+  BaseIcon
+} from "./chunk-OTTOV3UX.js";
+import {
   DomHandler,
   Ripple
-} from "./chunk-ROUACGLK.js";
+} from "./chunk-AD4F6LFC.js";
 import {
   ObjectUtils,
   PrimeTemplate,
   SharedModule,
   UniqueComponentId
-} from "./chunk-3L3ZJZFB.js";
+} from "./chunk-LFAYCW3G.js";
 import {
   DOCUMENT,
   NgClass,
   NgIf,
   NgStyle,
-  NgTemplateOutlet,
-  isPlatformBrowser
-} from "./chunk-XHU5GZOC.js";
+  NgTemplateOutlet
+} from "./chunk-YFBLGLTJ.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,10 +33,8 @@ import {
   InputFlags,
   NgModule,
   Output,
-  PLATFORM_ID,
   ViewEncapsulation$1,
   booleanAttribute,
-  inject,
   numberAttribute,
   setClassMetadata,
   ɵɵInheritDefinitionFeature,
@@ -67,101 +69,7 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-Z5H46ANP.js";
-
-// node_modules/primeng/fesm2022/primeng-autofocus.mjs
-var AutoFocus = class _AutoFocus {
-  /**
-   * When present, it specifies that the component should automatically get focus on load.
-   * @group Props
-   */
-  autofocus = false;
-  focused = false;
-  platformId = inject(PLATFORM_ID);
-  document = inject(DOCUMENT);
-  host = inject(ElementRef);
-  ngAfterContentChecked() {
-    if (this.autofocus === false) {
-      this.host.nativeElement.removeAttribute("autofocus");
-    } else {
-      this.host.nativeElement.setAttribute("autofocus", true);
-    }
-    if (!this.focused) {
-      this.autoFocus();
-    }
-  }
-  ngAfterViewChecked() {
-    if (!this.focused) {
-      this.autoFocus();
-    }
-  }
-  autoFocus() {
-    if (isPlatformBrowser(this.platformId) && this.autofocus) {
-      setTimeout(() => {
-        const focusableElements = DomHandler.getFocusableElements(this.host?.nativeElement);
-        if (focusableElements.length === 0) {
-          this.host.nativeElement.focus();
-        }
-        if (focusableElements.length > 0) {
-          focusableElements[0].focus();
-        }
-        this.focused = true;
-      });
-    }
-  }
-  static ɵfac = function AutoFocus_Factory(t) {
-    return new (t || _AutoFocus)();
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _AutoFocus,
-    selectors: [["", "pAutoFocus", ""]],
-    hostAttrs: [1, "p-element"],
-    inputs: {
-      autofocus: [InputFlags.HasDecoratorInputTransform, "autofocus", "autofocus", booleanAttribute]
-    },
-    standalone: true,
-    features: [ɵɵInputTransformsFeature]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AutoFocus, [{
-    type: Directive,
-    args: [{
-      selector: "[pAutoFocus]",
-      standalone: true,
-      host: {
-        class: "p-element"
-      }
-    }]
-  }], null, {
-    autofocus: [{
-      type: Input,
-      args: [{
-        transform: booleanAttribute
-      }]
-    }]
-  });
-})();
-var AutoFocusModule = class _AutoFocusModule {
-  static ɵfac = function AutoFocusModule_Factory(t) {
-    return new (t || _AutoFocusModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _AutoFocusModule,
-    imports: [AutoFocus],
-    exports: [AutoFocus]
-  });
-  static ɵinj = ɵɵdefineInjector({});
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AutoFocusModule, [{
-    type: NgModule,
-    args: [{
-      imports: [AutoFocus],
-      exports: [AutoFocus]
-    }]
-  }], null, null);
-})();
+} from "./chunk-G3HRGKO5.js";
 
 // node_modules/primeng/fesm2022/primeng-icons-spinner.mjs
 var SpinnerIcon = class _SpinnerIcon extends BaseIcon {
@@ -1167,10 +1075,8 @@ var ButtonModule = class _ButtonModule {
 })();
 
 export {
-  AutoFocus,
-  AutoFocusModule,
   ButtonDirective,
   Button,
   ButtonModule
 };
-//# sourceMappingURL=chunk-M62ZPGVQ.js.map
+//# sourceMappingURL=chunk-PZ4S4FGQ.js.map

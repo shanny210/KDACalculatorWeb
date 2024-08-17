@@ -1,0 +1,15 @@
+{
+  "kdaCalculator": "K/D/A Calculator",
+  "kills": "Kills",
+  "assists": "Assists",
+  "deaths": "Deaths",
+  "calculate": "Calculate",
+  "kda": "K/D/A",
+  "targetTracker": "K/D/A target tracker",
+  "targetKda": "Target K/D/A",
+  "neededKillsAssists": "Needed Kills/Assists",
+  "chartView": "Chart-View",
+  "calculateKdaPrompt": "Please calculate a K/D/A first",
+  "langEn": "EN",
+  "langDe": "DE"
+}

@@ -54,6 +54,10 @@ export class CombatStatService {
     }
   }
 
+  getRoundedKda() {
+    return Math.round((this.kdaStats.kda + Number.EPSILON) * 1000) / 1000;
+  }
+
   getNumberOfKillsOrAssistsUntilTargetKda(targetKda: number) {
     const {kills, assists, deaths} = this.kdaStats;
     return targetKda * deaths - (kills + assists);
