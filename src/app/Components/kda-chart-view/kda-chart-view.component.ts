@@ -50,6 +50,8 @@ export class KdaChartViewComponent implements OnInit, OnDestroy {
     }
 
     setChartDataAndOptions() {
+        this.kdaHasBeenCalculated = this.kdaStats.kills > 0 || this.kdaStats.assists > 0 || this.kdaStats.deaths > 0
+        
         this.data = this.chartDataService.setChartData(
             ['Kills', 'Assists', 'Deaths'],
             [this.kdaStats.kills, this.kdaStats.assists, this.kdaStats.deaths]
