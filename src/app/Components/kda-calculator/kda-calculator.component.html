@@ -1,96 +1,10 @@
 <main>
-  <div class="container-kda-calc">
-    <div class="container-kda-calc-and-chart">
-    <div class="container-fieldset">
-      <p-fieldset legend="K/D/A">
-        <div class="fielset-with-inputs min-height-kda-fieldset container-min-width">
-          <div class="container-input-buttons">
-            <p-floatLabel>
-              <p-inputNumber id="numberOfKills" [(ngModel)]="kdaStats.kills"/>
-              <label for="numberOfKills">{{ 'kills' | translate }}</label>
-            </p-floatLabel>
-
-            <p-buttonGroup>
-              <p-button id="addKill" icon="pi pi-plus" severity="success"
-                        (click)="addCombatStatValueOfType('kills')"/>
-              <p-button id="subtractKill" icon="pi pi-minus" severity="danger"
-                        (click)="subtractCombatStatValueOfType('kills')" [disabled]="kdaStats.kills <= 0"/>
-            </p-buttonGroup>
-          </div>
-
-          <div class="container-input-buttons">
-            <p-floatLabel>
-              <p-inputNumber id="numberOfAssists" [(ngModel)]="kdaStats.assists"/>
-              <label for="numberOfAssists">{{ 'assists' | translate }}</label>
-            </p-floatLabel>
-
-            <p-buttonGroup>
-              <p-button id="addAssist" icon="pi pi-plus" severity="success"
-                        (click)="addCombatStatValueOfType('assists')"/>
-              <p-button id="subtractAssist" icon="pi pi-minus" severity="danger"
-                        (click)="subtractCombatStatValueOfType('assists')" [disabled]="kdaStats.assists <= 0"/>
-            </p-buttonGroup>
-          </div>
-
-          <div class="container-input-buttons">
-            <p-floatLabel>
-              <p-inputNumber id="numberOfDeaths" [(ngModel)]="kdaStats.deaths"/>
-              <label for="numberOfDeaths">{{ 'deaths' | translate }}</label>
-            </p-floatLabel>
-
-            <p-buttonGroup>
-              <p-button id="addDeath" icon="pi pi-plus" severity="success"
-                        (click)="addCombatStatValueOfType('deaths')"/>
-              <p-button id="subtractDeath" icon="pi pi-minus" severity="danger"
-                        (click)="subtractCombatStatValueOfType('deaths')" [disabled]="kdaStats.deaths <= 0"/>
-            </p-buttonGroup>
-          </div>
+    <div class="container-kda-calc">
+        <div class="container-kda-calc-and-target">
+            <app-kda-calculation></app-kda-calculation>
+            <app-kda-target-tracker-calculation></app-kda-target-tracker-calculation>
         </div>
-        <p-button
-          icon="pi pi-calculator"
-          class="btn-calc"
-          (click)="calculateKda()"
-          severity="secondary"
-        />
-        <p-divider></p-divider>
-        <span class="label-calc-output">K/D/A <b>{{ getRoundedKda() }}</b></span>
-      </p-fieldset>
-  </div>
-
-    <div class="container-fieldset">
-      <p-fieldset legend="{{ 'targetTracker' | translate }}">
-        <div class="fielset-with-inputs min-height spacing container-min-width">
-          <div class="container-input-buttons">
-            <p-floatLabel>
-              <p-inputNumber id="targetKda" [(ngModel)]="targetKda" [maxFractionDigits]="2"/>
-              <label for="targetKda">{{ 'targetKda' | translate }}</label>
-            </p-floatLabel>
-            <p-button id="calculateTargetKda" icon="pi pi-calculator"
-                      (click)="getNumberOfKillsOrAssistsUntilTargetKda()" severity="secondary" [disabled]="kdaStats.kda == 0"
-            />
-          </div>
-          <div>
-            <p-divider></p-divider>
-            <span class="label-calc-output">{{ 'neededKillsAssists' | translate }}<b>{{ numberOfKillsForTargetKda }}</b></span>
-          </div>
-        </div>
-      </p-fieldset>
+        <app-kda-chart-view></app-kda-chart-view>
     </div>
-  </div>
-
-    <div class="container-fieldset">
-      <p-fieldset legend="{{ 'chartView' | translate }}" class="chart">
-        <div class="min-height container-min-width">
-          @if (kdaHasBeenCalculated) {
-            <p-chart type="pie" [data]="data" [options]="options"/>
-          } @else {
-            <div class="no-kda-info">
-              <i class="pi pi-info-circle"></i>
-              <span>{{ 'calculateKdaPrompt' | translate }}</span>
-            </div>
-          }
-        </div>
-      </p-fieldset>
-    </div>
-  </div>
 </main>
+

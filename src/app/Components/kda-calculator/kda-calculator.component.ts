@@ -1,25 +1,17 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {InputNumberModule} from "primeng/inputnumber";
-import {FloatLabelModule} from "primeng/floatlabel";
-import {ButtonModule} from "primeng/button";
-import {FormsModule} from "@angular/forms";
-import {CardModule} from "primeng/card";
 import {KdaStats} from "../../Domain/repositories/kdaStats";
 import {Subscription} from "rxjs";
 import {CombatStatService} from "../../Domain/services/combatStat.service";
-import {ButtonGroupModule} from "primeng/buttongroup";
-import {DividerModule} from "primeng/divider";
-import {ChartModule} from 'primeng/chart';
-import {ChartDataService} from "../../Domain/services/chartData.service";
-import {FieldsetModule} from "primeng/fieldset";
-import {InputGroupModule} from 'primeng/inputgroup';
-import {InputGroupAddonModule} from 'primeng/inputgroupaddon';
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {KdaCalculationComponent} from "../kda-calculation/kda-calculation.component";
+import {
+    KdaTargetTrackerCalculationComponent
+} from "../kda-target-tracker-calculation/kda-target-tracker-calculation.component";
+import {KdaChartViewComponent} from "../kda-chart-view/kda-chart-view.component";
 
 @Component({
     selector: 'app-kda-calculator',
     standalone: true,
-    imports: [CardModule, FieldsetModule, InputNumberModule, FloatLabelModule, ButtonModule, ButtonGroupModule, FormsModule, DividerModule, ChartModule, InputGroupModule, InputGroupAddonModule, TranslateModule],
+    imports: [KdaCalculationComponent, KdaTargetTrackerCalculationComponent, KdaChartViewComponent],
     templateUrl: './kda-calculator.component.html',
     styleUrl: './kda-calculator.component.scss',
 })
@@ -33,20 +25,12 @@ export class KdaCalculatorComponent implements OnInit, OnDestroy {
         kda: 0,
     };
 
-    data: any;
-    options: any;
-
-    kdaHasBeenCalculated = false;
-    targetKda = this.kdaStats.kda;
-    numberOfKillsForTargetKda = 0;
-
-    constructor(private combatStatService: CombatStatService, private chartDataService: ChartDataService, translate: TranslateService) {
+    constructor(private combatStatService: CombatStatService) {
     }
 
     ngOnInit() {
         this.combatStatSubscription = this.combatStatService.getKdaStats().subscribe(stats => {
             this.kdaStats = stats;
-            this.setChartDataAndOptions();
         });
     }
 
@@ -54,51 +38,5 @@ export class KdaCalculatorComponent implements OnInit, OnDestroy {
         if (this.combatStatSubscription) {
             this.combatStatSubscription.unsubscribe();
         }
-    }
-
-    setChartDataAndOptions() {
-        this.data = this.chartDataService.setChartData(['Kills', 'Assists', 'Deaths'], [this.kdaStats.kills, this.kdaStats.assists, this.kdaStats.deaths])
-        this.options = this.chartDataService.setChartOptions();
-    }
-
-    addCombatStatValueOfType(combatStatType: string) {
-        switch (combatStatType) {
-            case 'kills':
-                this.combatStatService.addKill();
-                break;
-            case 'assists':
-                this.combatStatService.addAssist();
-                break;
-            case 'deaths':
-                this.combatStatService.addDeath();
-                break;
-        }
-    }
-
-    subtractCombatStatValueOfType(combatStatType: string) {
-        switch (combatStatType) {
-            case 'kills':
-                this.combatStatService.subtractKill();
-                break;
-            case 'assists':
-                this.combatStatService.subtractAssist();
-                break;
-            case 'deaths':
-                this.combatStatService.subtractDeath();
-                break;
-        }
-    }
-
-    calculateKda() {
-        this.kdaHasBeenCalculated = true;
-        this.combatStatService.calculateAndGetKdaStats();
-    }
-
-    getRoundedKda() {
-        return this.combatStatService.getRoundedKda();
-    }
-
-    getNumberOfKillsOrAssistsUntilTargetKda() {
-        this.numberOfKillsForTargetKda = this.combatStatService.getNumberOfKillsOrAssistsUntilTargetKda(this.targetKda);
     }
 }

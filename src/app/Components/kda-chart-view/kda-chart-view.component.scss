@@ -1,0 +1,20 @@
+.container-fieldset {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+}
+
+.no-kda-info {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.min-height {
+  min-height: 400px;
+}
+
+.container-min-width {
+  min-width: 330px;
+}
