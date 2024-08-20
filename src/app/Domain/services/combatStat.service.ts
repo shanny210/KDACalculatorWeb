@@ -60,7 +60,7 @@ export class CombatStatService {
 
   getNumberOfKillsOrAssistsUntilTargetKda(targetKda: number) {
     const {kills, assists, deaths} = this.kdaStats;
-    return targetKda * deaths - (kills + assists);
+    return Math.ceil(targetKda * deaths - (kills + assists));
   }
 
   private calculateAndUpdateKda() {
