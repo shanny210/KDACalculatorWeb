@@ -81,7 +81,7 @@
     <div class="container-fieldset">
       <p-fieldset legend="{{ 'chartView' | translate }}" class="chart">
         <div class="min-height container-min-width">
-          @if (kdaStats.kda != 0) {
+          @if (kdaHasBeenCalculated) {
             <p-chart type="pie" [data]="data" [options]="options"/>
           } @else {
             <div class="no-kda-info">

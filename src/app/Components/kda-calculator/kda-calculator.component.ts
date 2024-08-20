@@ -12,91 +12,93 @@ import {DividerModule} from "primeng/divider";
 import {ChartModule} from 'primeng/chart';
 import {ChartDataService} from "../../Domain/services/chartData.service";
 import {FieldsetModule} from "primeng/fieldset";
-import { InputGroupModule } from 'primeng/inputgroup';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import {InputGroupModule} from 'primeng/inputgroup';
+import {InputGroupAddonModule} from 'primeng/inputgroupaddon';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-kda-calculator',
-  standalone: true,
-  imports: [CardModule, FieldsetModule, InputNumberModule, FloatLabelModule, ButtonModule, ButtonGroupModule, FormsModule, DividerModule, ChartModule, InputGroupModule, InputGroupAddonModule, TranslateModule],
-  templateUrl: './kda-calculator.component.html',
-  styleUrl: './kda-calculator.component.scss',
+    selector: 'app-kda-calculator',
+    standalone: true,
+    imports: [CardModule, FieldsetModule, InputNumberModule, FloatLabelModule, ButtonModule, ButtonGroupModule, FormsModule, DividerModule, ChartModule, InputGroupModule, InputGroupAddonModule, TranslateModule],
+    templateUrl: './kda-calculator.component.html',
+    styleUrl: './kda-calculator.component.scss',
 })
 
 export class KdaCalculatorComponent implements OnInit, OnDestroy {
-  private combatStatSubscription: Subscription | null = null;
-  kdaStats: KdaStats = {
-    kills: 0,
-    assists: 0,
-    deaths: 0,
-    kda: 0,
-  };
+    private combatStatSubscription: Subscription | null = null;
+    kdaStats: KdaStats = {
+        kills: 0,
+        assists: 0,
+        deaths: 0,
+        kda: 0,
+    };
 
-  data: any;
-  options: any;
+    data: any;
+    options: any;
 
-  targetKda = this.kdaStats.kda;
-  numberOfKillsForTargetKda = 0;
+    kdaHasBeenCalculated = false;
+    targetKda = this.kdaStats.kda;
+    numberOfKillsForTargetKda = 0;
 
-  constructor(private combatStatService: CombatStatService, private chartDataService: ChartDataService, translate: TranslateService) {
-  }
-
-  ngOnInit() {
-    this.combatStatSubscription = this.combatStatService.getKdaStats().subscribe(stats => {
-      this.kdaStats = stats;
-      this.setChartDataAndOptions();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.combatStatSubscription) {
-      this.combatStatSubscription.unsubscribe();
+    constructor(private combatStatService: CombatStatService, private chartDataService: ChartDataService, translate: TranslateService) {
     }
-  }
 
-  setChartDataAndOptions() {
-    this.data = this.chartDataService.setChartData(['Kills', 'Assists', 'Deaths'], [this.kdaStats.kills, this.kdaStats.assists, this.kdaStats.deaths])
-    this.options = this.chartDataService.setChartOptions();
-  }
-
-  addCombatStatValueOfType(combatStatType: string) {
-    switch (combatStatType) {
-      case 'kills':
-        this.combatStatService.addKill();
-        break;
-      case 'assists':
-        this.combatStatService.addAssist();
-        break;
-      case 'deaths':
-        this.combatStatService.addDeath();
-        break;
+    ngOnInit() {
+        this.combatStatSubscription = this.combatStatService.getKdaStats().subscribe(stats => {
+            this.kdaStats = stats;
+            this.setChartDataAndOptions();
+        });
     }
-  }
 
-  subtractCombatStatValueOfType(combatStatType: string) {
-    switch (combatStatType) {
-      case 'kills':
-        this.combatStatService.subtractKill();
-        break;
-      case 'assists':
-        this.combatStatService.subtractAssist();
-        break;
-      case 'deaths':
-        this.combatStatService.subtractDeath();
-        break;
+    ngOnDestroy() {
+        if (this.combatStatSubscription) {
+            this.combatStatSubscription.unsubscribe();
+        }
     }
-  }
 
-  calculateKda() {
-    this.combatStatService.calculateAndGetKdaStats();
-  }
+    setChartDataAndOptions() {
+        this.data = this.chartDataService.setChartData(['Kills', 'Assists', 'Deaths'], [this.kdaStats.kills, this.kdaStats.assists, this.kdaStats.deaths])
+        this.options = this.chartDataService.setChartOptions();
+    }
 
-  getRoundedKda() {
-    return this.combatStatService.getRoundedKda();
-  }
+    addCombatStatValueOfType(combatStatType: string) {
+        switch (combatStatType) {
+            case 'kills':
+                this.combatStatService.addKill();
+                break;
+            case 'assists':
+                this.combatStatService.addAssist();
+                break;
+            case 'deaths':
+                this.combatStatService.addDeath();
+                break;
+        }
+    }
 
-  getNumberOfKillsOrAssistsUntilTargetKda() {
-    this.numberOfKillsForTargetKda = this.combatStatService.getNumberOfKillsOrAssistsUntilTargetKda(this.targetKda);
-  }
+    subtractCombatStatValueOfType(combatStatType: string) {
+        switch (combatStatType) {
+            case 'kills':
+                this.combatStatService.subtractKill();
+                break;
+            case 'assists':
+                this.combatStatService.subtractAssist();
+                break;
+            case 'deaths':
+                this.combatStatService.subtractDeath();
+                break;
+        }
+    }
+
+    calculateKda() {
+        this.kdaHasBeenCalculated = true;
+        this.combatStatService.calculateAndGetKdaStats();
+    }
+
+    getRoundedKda() {
+        return this.combatStatService.getRoundedKda();
+    }
+
+    getNumberOfKillsOrAssistsUntilTargetKda() {
+        this.numberOfKillsForTargetKda = this.combatStatService.getNumberOfKillsOrAssistsUntilTargetKda(this.targetKda);
+    }
 }
