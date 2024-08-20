@@ -20,7 +20,6 @@ import {ChartDataService} from "../../Domain/services/chartData.service";
 })
 export class KdaChartViewComponent implements OnInit, OnDestroy {
     private combatStatSubscription: Subscription | null = null;
-
     kdaStats: KdaStats = {
         kills: 0,
         assists: 0,
@@ -33,7 +32,7 @@ export class KdaChartViewComponent implements OnInit, OnDestroy {
 
     kdaHasBeenCalculated = false;
 
-    constructor(private combatStatService: CombatStatService, private chartDataService: ChartDataService, translate: TranslateService) {
+    constructor(private combatStatService: CombatStatService, private chartDataService: ChartDataService, public translate: TranslateService) {
     }
 
     ngOnInit() {
@@ -51,9 +50,9 @@ export class KdaChartViewComponent implements OnInit, OnDestroy {
 
     setChartDataAndOptions() {
         this.kdaHasBeenCalculated = this.kdaStats.kills > 0 || this.kdaStats.assists > 0 || this.kdaStats.deaths > 0
-        
+
         this.data = this.chartDataService.setChartData(
-            ['Kills', 'Assists', 'Deaths'],
+            [this.translate.instant('kills'), this.translate.instant('assists'), this.translate.instant('deaths')],
             [this.kdaStats.kills, this.kdaStats.assists, this.kdaStats.deaths]
         )
         this.options = this.chartDataService.setChartOptions();
