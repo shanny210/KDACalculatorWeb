@@ -1,17 +1,17 @@
 import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-} from "./chunk-DWOTTQAZ.js";
-import {
   BaseIcon
 } from "./chunk-OTTOV3UX.js";
 import {
   Ripple,
   RippleModule
 } from "./chunk-AD4F6LFC.js";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from "./chunk-DWOTTQAZ.js";
 import {
   PrimeTemplate,
   SharedModule,

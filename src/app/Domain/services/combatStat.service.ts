@@ -6,6 +6,8 @@ import {BehaviorSubject, Observable} from "rxjs";
     providedIn: 'root',
 })
 export class CombatStatService {
+    private readonly storageKey = 'kdaStats';
+
     private kdaStats: KdaStats = {
         kills: 0,
         assists: 0,
@@ -14,6 +16,22 @@ export class CombatStatService {
     };
 
     private kdaStatsSubject = new BehaviorSubject<KdaStats>(this.kdaStats);
+
+    constructor() {
+        this.loadKdaStats();
+    }
+
+    private loadKdaStats(): void {
+        const savedStats = localStorage.getItem(this.storageKey);
+        if (savedStats) {
+            this.kdaStats = JSON.parse(savedStats);
+            this.kdaStatsSubject.next(this.kdaStats);
+        }
+    }
+
+    private saveKdaStats(): void {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.kdaStats));
+    }
 
     getKdaStats(): Observable<KdaStats> {
         return this.kdaStatsSubject.asObservable();
@@ -67,5 +85,6 @@ export class CombatStatService {
         const {kills, assists, deaths} = this.kdaStats;
         this.kdaStats.kda = deaths === 0 ? kills + assists : (kills + assists) / deaths;
         this.kdaStatsSubject.next(this.kdaStats);
+        this.saveKdaStats();
     }
 }

@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
 import {KdaStats} from "../../Domain/repositories/kdaStats";
 import {CombatStatService} from "../../Domain/services/combatStat.service";
 import {FormsModule} from "@angular/forms";
+import {StorageService} from "../../Domain/services/storage.service";
 
 @Component({
     selector: 'app-kda-calculation',
@@ -36,7 +37,7 @@ export class KdaCalculationComponent implements OnInit, OnDestroy {
         kda: 0,
     };
 
-    constructor(private combatStatService: CombatStatService, translate: TranslateService) {
+    constructor(private combatStatService: CombatStatService, private storageService: StorageService, translate: TranslateService) {
     }
 
     ngOnInit() {
