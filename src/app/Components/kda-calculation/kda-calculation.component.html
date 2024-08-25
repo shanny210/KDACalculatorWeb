@@ -1,0 +1,56 @@
+<div class="container-fieldset">
+    <p-fieldset legend="K/D/A">
+        <div class="fielset-with-inputs min-height-kda-fieldset container-min-width">
+            <div class="container-input-buttons">
+                <p-floatLabel>
+                    <p-inputNumber id="numberOfKills" [(ngModel)]="kdaStats.kills"/>
+                    <label for="numberOfKills">{{ 'kills' | translate }}</label>
+                </p-floatLabel>
+
+                <p-buttonGroup>
+                    <p-button id="addKill" icon="pi pi-plus" severity="success"
+                              (click)="addCombatStatValueOfType('kills')"/>
+                    <p-button id="subtractKill" icon="pi pi-minus" severity="danger"
+                              (click)="subtractCombatStatValueOfType('kills')" [disabled]="kdaStats.kills <= 0"/>
+                </p-buttonGroup>
+            </div>
+
+            <div class="container-input-buttons">
+                <p-floatLabel>
+                    <p-inputNumber id="numberOfAssists" [(ngModel)]="kdaStats.assists"/>
+                    <label for="numberOfAssists">{{ 'assists' | translate }}</label>
+                </p-floatLabel>
+
+                <p-buttonGroup>
+                    <p-button id="addAssist" icon="pi pi-plus" severity="success"
+                              (click)="addCombatStatValueOfType('assists')"/>
+                    <p-button id="subtractAssist" icon="pi pi-minus" severity="danger"
+                              (click)="subtractCombatStatValueOfType('assists')"
+                              [disabled]="kdaStats.assists <= 0"/>
+                </p-buttonGroup>
+            </div>
+
+            <div class="container-input-buttons">
+                <p-floatLabel>
+                    <p-inputNumber id="numberOfDeaths" [(ngModel)]="kdaStats.deaths"/>
+                    <label for="numberOfDeaths">{{ 'deaths' | translate }}</label>
+                </p-floatLabel>
+
+                <p-buttonGroup>
+                    <p-button id="addDeath" icon="pi pi-plus" severity="success"
+                              (click)="addCombatStatValueOfType('deaths')"/>
+                    <p-button id="subtractDeath" icon="pi pi-minus" severity="danger"
+                              (click)="subtractCombatStatValueOfType('deaths')" [disabled]="kdaStats.deaths <= 0"/>
+                </p-buttonGroup>
+            </div>
+        </div>
+        <p-button
+                icon="pi pi-calculator"
+                class="btn-calc"
+                (click)="calculateKda()"
+                severity="secondary"
+        />
+        <p-divider></p-divider>
+        <span class="label-calc-output">K/D/A <b>{{ getRoundedKda() }}</b></span>
+    </p-fieldset>
+</div>

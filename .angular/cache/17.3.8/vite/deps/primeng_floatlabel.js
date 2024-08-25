@@ -2,10 +2,10 @@ import {
   RouterModule
 } from "./chunk-2FPBXAJU.js";
 import "./chunk-5GY5EIQK.js";
-import "./chunk-MRSCLPDQ.js";
 import {
   SharedModule
 } from "./chunk-LFAYCW3G.js";
+import "./chunk-MRSCLPDQ.js";
 import {
   CommonModule
 } from "./chunk-YFBLGLTJ.js";

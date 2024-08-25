@@ -1,7 +1,4 @@
 import {
-  NG_VALUE_ACCESSOR
-} from "./chunk-UB6HEAP7.js";
-import {
   AutoFocus,
   AutoFocusModule
 } from "./chunk-UL2KDJPG.js";
@@ -9,6 +6,9 @@ import {
   Ripple,
   RippleModule
 } from "./chunk-AD4F6LFC.js";
+import {
+  NG_VALUE_ACCESSOR
+} from "./chunk-UB6HEAP7.js";
 import {
   ObjectUtils,
   PrimeTemplate,
