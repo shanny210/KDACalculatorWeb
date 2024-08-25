@@ -1,0 +1,14 @@
+<div class="container-fieldset">
+    <p-fieldset legend="{{ 'chartView' | translate }}" class="chart">
+        <div class="min-height container-min-width">
+            @if (kdaHasBeenCalculated) {
+                <p-chart type="pie" [data]="data" [options]="options"/>
+            } @else {
+                <div class="no-kda-info">
+                    <i class="pi pi-info-circle"></i>
+                    <span>{{ 'calculateKdaPrompt' | translate }}</span>
+                </div>
+            }
+        </div>
+    </p-fieldset>
+</div>

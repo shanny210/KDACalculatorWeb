@@ -1,0 +1,45 @@
+.container-fieldset {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+}
+
+.container-min-width {
+  min-width: 330px;
+}
+
+.fielset-with-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.container-input-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.label-calc-output {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.btn-calc {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/** Media Queries **/
+
+@media only screen and (min-width: 1330px) {
+  .min-height-kda-fieldset {
+    min-height: 264px;
+  }
+}

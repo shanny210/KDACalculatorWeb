@@ -2,11 +2,6 @@ import {
   TimesIcon
 } from "./chunk-RPZ5L2JU.js";
 import {
-  NG_VALUE_ACCESSOR,
-  NgControl,
-  NgModel
-} from "./chunk-UB6HEAP7.js";
-import {
   ButtonDirective,
   ButtonModule
 } from "./chunk-PZ4S4FGQ.js";
@@ -20,6 +15,11 @@ import {
 import {
   DomHandler
 } from "./chunk-AD4F6LFC.js";
+import {
+  NG_VALUE_ACCESSOR,
+  NgControl,
+  NgModel
+} from "./chunk-UB6HEAP7.js";
 import {
   PrimeNGConfig,
   PrimeTemplate,

@@ -1,0 +1,21 @@
+<div class="container-fieldset">
+    <p-fieldset legend="{{ 'targetTracker' | translate }}">
+        <div class="fielset-with-inputs min-height spacing container-min-width">
+            <div class="container-input-buttons">
+                <p-floatLabel>
+                    <p-inputNumber id="targetKda" [(ngModel)]="targetKda" [maxFractionDigits]="2"/>
+                    <label for="targetKda">{{ 'targetKda' | translate }}</label>
+                </p-floatLabel>
+                <p-button id="calculateTargetKda" icon="pi pi-calculator"
+                          (click)="getNumberOfKillsOrAssistsUntilTargetKda()" severity="secondary"
+                          [disabled]="kdaStats.kda == 0"
+                />
+            </div>
+            <div>
+                <p-divider></p-divider>
+                <span class="label-calc-output">{{ 'neededKillsAssists' | translate }}
+                    <b>{{ numberOfKillsForTargetKda }}</b></span>
+            </div>
+        </div>
+    </p-fieldset>
+</div>
